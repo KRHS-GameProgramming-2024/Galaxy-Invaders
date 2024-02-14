@@ -1,6 +1,6 @@
 import pygame, sys, math
 
-class Ball():
+class Ship():
     def __init__(self, image, speed = [0,0], startPos=[0,0]):
         self.image = pygame.image.load(image)
         self.rect = self.image.get_rect()
@@ -38,7 +38,7 @@ class Ball():
                 self.speedy = -self.speedy
                 self.didBounceX = True
 
-    def ballCollide(self, other):
+    def shipCollide(self, other):
         if self != other:
             if self.rect.right>other.rect.left:
                 if self.rect.left<other.rect.right:

@@ -12,8 +12,8 @@ screen = pygame.display.set_mode(size)
 
 
 counter = 0;
-player = PlayerBall(4, [1450/2, 1250/2])
-balls = [player]
+player = PlayerShip(4, [1450/2, 1250/2])
+ship = [player]
 
 while True:
     for event in pygame.event.get():
@@ -35,28 +35,26 @@ while True:
     counter += 1
     if counter >= 100:
         counter = 0;
-        balls += [Ball("Enemyship.png", 
+        Ships += [Ship("Enemyship.png", 
                 [random.randint(-7,7), random.randint(-7,7)],
                 [random.randint(100,700), random.randint(100, 500)])
           ]
-        for ball in balls: 
-            if balls[-1].ballCollide(ball):
-                balls.remove(balls[-1])
+        for ship in ships: 
+            if ships[-1].shipCollide(ship):
+                ships.remove(ships[-1])
                 break
     
-    
-    for ball in balls:
-        ball.move()
-        ball.wallCollide(size)
+    for playerShip in Ship:
+        playerShip.move()
+        playerShip.wallCollide(size)
         
-    for hittingBall in balls:
-        for hitBall in balls:
-            hittingBall.ballCollide(hitBall)
-    
+    for hittingplayerShip in Ship:
+        for hitplayerShip in Ship:
+            hittingplayerShip.shipCollide(hitplayerShip)
 
     screen.fill((97, 164, 229))
-    for ball in balls:
-        screen.blit(ball.image, ball.rect)
+    for playerShip in Ships:
+        screen.blit(player.image, ship.rect)
     pygame.display.flip()
     clock.tick(60)
     print(clock.get_fps()) 

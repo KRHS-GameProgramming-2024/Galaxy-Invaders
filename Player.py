@@ -1,9 +1,9 @@
 import pygame, sys, math
 from Player2 import *
 
-class PlayerBall(Ball):
+class PlayerShip(Ship):
     def __init__(self,maxSpeed=4, startPos=[0,0]):
-        Ball.__init__(self, "player.png", [0,0], startPos)
+        Ship.__init__(self, "player.png", [0,0], startPos)
         self.maxSpeed = maxSpeed
 
     def goKey(self, direction):
