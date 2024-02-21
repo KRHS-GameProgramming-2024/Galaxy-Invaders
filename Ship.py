@@ -23,20 +23,16 @@ class Ship():
     def wallCollide(self, size):
         width = size[0]
         height = size[1]
-        if not self.didBounceY:
-            if self.rect.left < 0:
-                self.speedx = -self.speedx
-                self.didBounceY = True
-            if self.rect.top < 0:
-                self.speedy = -self.speedy
-                self.didBounceY = True
-        if not self.didBounceX:
-            if self.rect.right > width:
-                self.speedx = -self.speedx
-                self.didBounceX = True
-            if self.rect.bottom > height:
-                self.speedy = -self.speedy
-                self.didBounceX = True
+        if self.rect.left < 0 or self.rect.right > width:
+            self.speedx = -self.speedx
+            self.rect=self.rect.move([0,50])
+        
+        
+        if self.rect.bottom > height:
+            self.die()
+            
+    def die(self):
+        pass
 
     def shipCollide(self, other):
         if self != other:
