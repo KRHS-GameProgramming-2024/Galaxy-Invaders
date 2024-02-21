@@ -1,7 +1,7 @@
 import pygame, sys, math, random
 from Enemy import *
 from Player import *
-from Player2 import *
+from Ship import *
 
 pygame.init()
 clock = pygame.time.Clock();
@@ -13,7 +13,7 @@ screen = pygame.display.set_mode(size)
 
 counter = 0;
 player = PlayerShip(4, [1450/2, 1250/2])
-ship = [player]
+ships = [player]
 
 while True:
     for event in pygame.event.get():
@@ -35,26 +35,26 @@ while True:
     counter += 1
     if counter >= 100:
         counter = 0;
-        Ships += [Ship("Enemyship.png", 
-                [random.randint(-7,7), random.randint(-7,7)],
-                [random.randint(100,700), random.randint(100, 500)])
-          ]
-        for ship in ships: 
+        ships += [Ship("Enemyship.png",
+                 [5,0],
+                 [400,25])]
+          
+    for ship in ships: 
             if ships[-1].shipCollide(ship):
                 ships.remove(ships[-1])
                 break
     
-    for playerShip in Ship:
+    for playerShip in ships:
         playerShip.move()
         playerShip.wallCollide(size)
         
-    for hittingplayerShip in Ship:
-        for hitplayerShip in Ship:
+    for hittingplayerShip in ships:
+        for hitplayerShip in ships:
             hittingplayerShip.shipCollide(hitplayerShip)
 
     screen.fill((97, 164, 229))
-    for playerShip in Ships:
-        screen.blit(player.image, ship.rect)
+    for playerShip in ships:
+        screen.blit(playerShip.image,playerShip.rect)
     pygame.display.flip()
     clock.tick(60)
     print(clock.get_fps()) 
