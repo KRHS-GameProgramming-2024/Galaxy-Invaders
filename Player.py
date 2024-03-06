@@ -16,3 +16,4 @@ class PlayerShip(Ship):
         elif direction == "sright":
             self.speedx = 0
             
+  
