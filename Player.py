@@ -17,3 +17,20 @@ class PlayerShip(Ship):
             self.speedx = 0
             
   
+    class Player
+        def __init__(self):
+            self.position = [0,0]
+            self.direction = [1,
+    0]
+            self.shoot_cooldown = 0.5
+            self.last_shot_time = 0
+            
+    def shoot(self):
+        current.time() = time.time()
+        if current_time - self.last_shot_time > self.shoot_cooldown
+        
+    import time
+        player = Player()
+    while True:
+        user_input = input("Press  to shoot")
+        if user_input.lower() == "
