@@ -35,7 +35,7 @@ while True:
     counter += 1
     if counter >= 100:
         counter = 0;
-        ships += [Ship("Enemyship.png",
+        ships += [Ship("Enemy/Enemyship.png",
                  [5,0],
                  [400,25])]
           

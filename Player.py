@@ -3,7 +3,7 @@ from Player2 import *
 
 class PlayerShip(Ship):
     def __init__(self,maxSpeed=4, startPos=[0,0]):
-        Ship.__init__(self, "player.png", [0,0], startPos)
+        Ship.__init__(self, "Player/player.png", [0,0], startPos)
         self.maxSpeed = maxSpeed
 
     def goKey(self, direction):
