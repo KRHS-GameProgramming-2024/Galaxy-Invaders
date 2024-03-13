@@ -14,6 +14,7 @@ screen = pygame.display.set_mode(size)
 counter = 0;
 player = PlayerShip(4, [1450/2, 1250/2])
 ships = [player]
+bullets =[]
 
 while True:
     for event in pygame.event.get():
@@ -24,6 +25,10 @@ while True:
                 player.goKey("left")
             elif event.key == pygame.K_d or event.key == pygame.K_RIGHT:
                 player.goKey("right")
+            elif event.key == pygame.K_w:
+                bullets += [player.shoot()]
+            
+            
 
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_a or event.key == pygame.K_LEFT:
@@ -44,17 +49,23 @@ while True:
                 ships.remove(ships[-1])
                 break
     
-    for playerShip in ships:
-        playerShip.move()
-        playerShip.wallCollide(size)
+    for ship in ships:
+        ship.move()
+        ship.wallCollide(size)
+    
+    for bullet in bullets:
+        bullet.move()
+        bullet.wallCollide(size)
         
     for hittingplayerShip in ships:
         for hitplayerShip in ships:
             hittingplayerShip.shipCollide(hitplayerShip)
 
     screen.fill((97, 164, 229))
-    for playerShip in ships:
-        screen.blit(playerShip.image,playerShip.rect)
+    for ship in ships:
+        screen.blit(ship.image,ship.rect)
+    for bullet in bullets:
+        screen.blit(bullet.image,bullet.rect)
     pygame.display.flip()
     clock.tick(60)
     print(clock.get_fps()) 
