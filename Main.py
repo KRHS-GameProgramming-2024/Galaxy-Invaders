@@ -5,7 +5,6 @@ from Ship import *
 
 pygame.init()
 clock = pygame.time.Clock();
-
 size= [1500, 800]
 screen = pygame.display.set_mode(size)
 
