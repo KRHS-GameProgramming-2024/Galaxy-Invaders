@@ -2,7 +2,6 @@ import pygame, sys, math, random
 from Enemy import *
 from Player import *
 from Ship import *
-
 pygame.init()
 clock = pygame.time.Clock();
 
