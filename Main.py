@@ -40,7 +40,11 @@ while True:
     counter += 1
     if counter >= 100:
         counter = 0;
-        ships += [Ship("Enemy/Enemyship.png",
+        shipImiges =["Enemy/Enemyship.png",
+                     "Enemy/Enemyship2.png",
+                     "Enemy/Enemyship3.png"]
+        image = shipImiges[random.randint(0,3)]
+        ships += [Ship(image,
                  [5,0],
                  [400,25])]
           
