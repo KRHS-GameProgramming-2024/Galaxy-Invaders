@@ -18,6 +18,6 @@ class PlayerShip(Ship):
             self.speedx = 0
             
     def shoot(self):
-        return Bullet([0, -20], self.rect.center)
+        return Bullet([-10, -20], self.rect.center)
             
   
