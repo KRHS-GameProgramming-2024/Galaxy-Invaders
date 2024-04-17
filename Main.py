@@ -8,6 +8,8 @@ clock = pygame.time.Clock();
 size= [1500, 800]
 screen = pygame.display.set_mode(size)
 
+bg=pygame.image.load('Screens/space.png')
+
 
 
 counter = 0;
@@ -42,7 +44,7 @@ while True:
         shipImiges =["Enemy/Enemyship.png",
                      "Enemy/Enemyship2.png",
                      "Enemy/Enemyship3.png"]
-        image = shipImiges[random.randint(0,3)]
+        image = shipImiges[random.randint(0,2)]
         ships += [Ship(image,
                  [5,0],
                  [400,25])]
@@ -65,6 +67,7 @@ while True:
             hittingplayerShip.shipCollide(hitplayerShip)
 
     screen.fill((97, 164, 229))
+    screen.blit(bg,[0,0])
     for ship in ships:
         screen.blit(ship.image,ship.rect)
     for bullet in bullets:
