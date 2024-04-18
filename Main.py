@@ -62,6 +62,17 @@ while True:
         bullet.move()
         bullet.wallCollide(size)
         
+        for ship in ships:
+            if not ship == ships[0]:
+                if bullet.shipCollide(ship):
+                    ships.remove(ship)
+                
+            
+            
+        if bullet.rect.bottom <= 0:
+            bullets.remove(bullet)
+        
+        
     for hittingplayerShip in ships:
         for hitplayerShip in ships:
             hittingplayerShip.shipCollide(hitplayerShip)
@@ -74,4 +85,4 @@ while True:
         screen.blit(bullet.image,bullet.rect)
     pygame.display.flip()
     clock.tick(60)
-    print(clock.get_fps()) 
+    #print(clock.get_fps()) 
