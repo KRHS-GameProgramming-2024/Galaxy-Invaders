@@ -27,6 +27,10 @@ while True:
             elif event.key == pygame.K_d or event.key == pygame.K_RIGHT:
                 player.goKey("right")
             elif event.key == pygame.K_w:
+                player.goKey("up")
+            elif event.key == pygame.K_s:
+                player.goKey("down")
+            elif event.key == pygame.K_f:
                 bullets += [player.shoot()]
             
             
@@ -36,6 +40,8 @@ while True:
                 player.goKey("sleft")
             elif event.key == pygame.K_d or event.key == pygame.K_RIGHT:
                 player.goKey("sright")
+            elif event.key == pygame.K_f:
+                player.goKey("sup")
 
             
     counter += 1
