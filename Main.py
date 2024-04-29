@@ -45,7 +45,7 @@ while True:
 
             
     counter += 1
-    if counter >= 100:
+    if counter >= 30:
         counter = 0;
         shipImiges =["Enemy/Enemyship.png",
                      "Enemy/Enemyship2.png",
