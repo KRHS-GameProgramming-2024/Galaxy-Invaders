@@ -1,7 +1,7 @@
 import pygame, sys, math
 
 class Bullet():
-    def __init__(self,speed, startPos=[0,0]):
+    def __init__(self,owner, speed, startPos=[0,0]):
         self.image = pygame.image.load( "Bullet/Bullet.png")
         self.rect = self.image.get_rect()
         self.speedx = speed[0]
@@ -11,6 +11,8 @@ class Bullet():
     
         self.rect = self.rect.move(startPos)
         self.rad = (self.rect.height/50 + self.rect.width/50)/50
+        
+        self.owner=owner
 
     
     def move(self):
@@ -35,12 +37,13 @@ class Bullet():
        
     
     def shipCollide(self,ship):
-        if ship.rect.left <= self.rect.right:
-            if ship.rect.right >= self.rect.left:
-                if ship.rect.top <= self.rect.bottom:
-                    if ship.rect.bottom >= self.rect.top:
-                        print('collison')
-                        return True
+        if self.owner !=ship.kind:
+            if ship.rect.left <= self.rect.right:
+                if ship.rect.right >= self.rect.left:
+                    if ship.rect.top <= self.rect.bottom:
+                        if ship.rect.bottom >= self.rect.top:
+                            print('collison')
+                            return True
         return False
         
     def die(self):

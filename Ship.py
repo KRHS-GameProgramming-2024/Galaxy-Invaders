@@ -14,6 +14,8 @@ class Ship():
         
         self.didBounceX = False
         self.didBounceY = False
+        
+        self.kind="enemy"
 
     def move(self):
         self.didBounceX = False
@@ -45,13 +47,13 @@ class Ship():
     def die(self):
         pass
         
-    def shoot(self, direction):
+    def shoot(self, owner, direction):
         speed=[0,0]
         if direction =="up":
             speed=[0, -20]
         elif direction == "down":
             speed=[0, 20]
-        return Bullet(speed, self.rect.center)
+        return Bullet(owner, speed, self.rect.center)
 
     def shipCollide(self, other):
         if self != other:

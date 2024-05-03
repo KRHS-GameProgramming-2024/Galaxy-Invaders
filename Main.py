@@ -17,6 +17,8 @@ player = PlayerShip(4, [1450/2, 1250/2])
 ships = [player]
 bullets =[]
 
+shootOdds = 225
+
 while True:
     for event in pygame.event.get():
         if event.type==pygame.QUIT:
@@ -31,7 +33,7 @@ while True:
             elif event.key == pygame.K_s:
                 player.goKey("down")
             elif event.key == pygame.K_f:
-                bullets += [player.shoot("up")]
+                bullets += [player.shoot("player", "up")]
             
             
 
@@ -54,8 +56,9 @@ while True:
         ships += [Ship(image,
                  [5,0],
                  [400,25])]
+                 
           
-    for ship in ships: 
+        for ship in ships: 
             if ships[-1].shipCollide(ship):
                 ships.remove(ships[-1])
                 break
@@ -63,6 +66,9 @@ while True:
     for ship in ships:
         ship.move()
         ship.wallCollide(size)
+        if ship.kind=="enemy":
+            if random.randint(0,shootOdds)==0:
+                bullets += [ship.shoot("enemy", "down")]
     
     for bullet in bullets:
         bullet.move()
