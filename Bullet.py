@@ -6,7 +6,7 @@ class Bullet(Ship):
         Ship.__init__(self, "Bullet/Bullet.png", speed, startPos)
         self.rad = (self.rect.height/50 + self.rect.width/50)/50
     
-    
+
     
     def shipCollide(self,ship):
         if ship.rect.left <= self.rect.right:
