@@ -1,6 +1,6 @@
 import pygame, sys, math
 from Ship import *
-from Bullet import *
+
 
 class PlayerShip(Ship):
     def __init__(self,maxSpeed=20, startPos=[0,0]):
@@ -21,7 +21,6 @@ class PlayerShip(Ship):
         elif direction == "sright":
             self.speedx = 0
             
-    def shoot(self):
-        return Bullet([0, -20], self.rect.center)
+    
             
   

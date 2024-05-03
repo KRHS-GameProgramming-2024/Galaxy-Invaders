@@ -1,4 +1,5 @@
 import pygame, sys, math
+from Bullet import *
 
 class Ship():
     def __init__(self, image, speed = [0,0], startPos=[0,0]):
@@ -43,6 +44,14 @@ class Ship():
             
     def die(self):
         pass
+        
+    def shoot(self, direction):
+        speed=[0,0]
+        if direction =="up":
+            speed=[0, -20]
+        elif direction == "down":
+            speed=[0, 20]
+        return Bullet(speed, self.rect.center)
 
     def shipCollide(self, other):
         if self != other:

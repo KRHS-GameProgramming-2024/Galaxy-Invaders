@@ -31,7 +31,7 @@ while True:
             elif event.key == pygame.K_s:
                 player.goKey("down")
             elif event.key == pygame.K_f:
-                bullets += [player.shoot()]
+                bullets += [player.shoot("up")]
             
             
 
@@ -66,17 +66,14 @@ while True:
     
     for bullet in bullets:
         bullet.move()
-        bullet.wallCollide(size)
-        
+        if bullet.wallCollide(size):
+            bullets.remove(bullet)
+            
         for ship in ships:
             if not ship == ships[0]:
                 if bullet.shipCollide(ship):
                     ships.remove(ship)
-                
-            
-            
-        if bullet.rect.bottom <= 0:
-            bullets.remove(bullet)
+                    bullets.remove(bullet)
         
         
     for hittingplayerShip in ships:

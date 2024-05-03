@@ -1,5 +1,14 @@
 import pygame, sys, math
 
+
+class Bullet(Ship):
+    def __init__(enemy,speed, startPos=[0,0]):
+        Ship.__init__(self, "Bullet/Bullet.png", speed, startPos)
+        enemy.rad = (enemy.rect.height/50 + enemy.rect.width/50)/50
+  
+  def shoot(enemy):
+        return Bullet([0, -20], enemy.rect.center) 
+
 class Ship():
     def __init__(self, image, speed = [0,0], startPos=[0,0]):
         self.image = pygame.image.load(image)
