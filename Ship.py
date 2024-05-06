@@ -18,28 +18,19 @@ class Ship():
         self.kind="enemy"
 
     def move(self):
-        self.didBounceX = False
-        self.didBounceY = False
         self.speed = [self.speedx, self.speedy]
         self.rect = self.rect.move(self.speed)
 
     def wallCollide(self, size):
         width = size[0]
         height = size[1]
-        if not self.didBounceY:
-            if self.rect.left < 0:
-                self.speedx = -self.speedx
-                self.didBounceY = True
-            if self.rect.top < 0:
-                self.speedy = -self.speedy
-                self.didBounceY = True
-        if not self.didBounceX:
-            if self.rect.right > width:
-                self.speedx = -self.speedx
-                self.didBounceX = True
-            if self.rect.bottom > height:
-                self.speedy = -self.speedy
-                self.didBounceX = True
+        if self.rect.left < 0:
+            self.speedx = -self.speedx
+            self.rect.move_ip([self.speedx,75])
+            
+        if self.rect.right > width:
+            self.speedx = -self.speedx
+            self.rect.move_ip([self.speedx,75])
         
         if self.rect.bottom > height:
             self.die()

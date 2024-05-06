@@ -23,6 +23,16 @@ class PlayerShip(Ship):
         elif direction == "sright":
             self.speedx = 0
             
-    
+    def wallCollide(self, size):
+        width = size[0]
+        height = size[1]
+        if self.rect.left < 0:
+            self.speedx = -self.speedx
+        if self.rect.top < 0:
+            self.speedy = -self.speedy
+        if self.rect.right > width:
+            self.speedx = -self.speedx
+        if self.rect.bottom > height:
+            self.speedy = -self.speedy
             
   
