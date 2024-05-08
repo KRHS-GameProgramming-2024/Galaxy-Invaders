@@ -21,6 +21,7 @@ while True:
     bullets =[]
 
     shootOdds = 225
+
     while mode=="play":
         for event in pygame.event.get():
             if event.type==pygame.QUIT:
