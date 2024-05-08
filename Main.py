@@ -105,7 +105,7 @@ while True:
         #print(clock.get_fps()) 
 
     bg=pygame.image.load('Screens/GameOver.png')
-
+    
     while mode=="game over":
         for event in pygame.event.get():
             if event.type==pygame.QUIT:
