@@ -83,6 +83,10 @@ while True:
                     if bullet.shipCollide(ship):
                         ships.remove(ship)
                         bullets.remove(bullet)
+                else:
+                    if bullet.shipCollide(ship):
+                        bullets.remove(bullet)
+                        mode="game over"
             
             
         for hittingplayerShip in ships:
