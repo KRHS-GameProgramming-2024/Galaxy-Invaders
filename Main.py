@@ -2,6 +2,7 @@ import pygame, sys, math, random
 from Enemy import *
 from Player import *
 from Ship import *
+from Wall import *
 
 pygame.init()
 clock = pygame.time.Clock();
@@ -37,6 +38,8 @@ while True:
                     player.goKey("down")
                 elif event.key == pygame.K_f:
                     bullets += [player.shoot("player", "up")]
+                elif event.key == pygame.K_q:
+                    bullets += [player.shootWall("player", "up")]
                 
                 
 
@@ -77,16 +80,24 @@ while True:
             bullet.move()
             if bullet.wallCollide(size):
                 bullets.remove(bullet)
-                
-            for ship in ships:
-                if not ship == ships[0]:
-                    if bullet.shipCollide(ship):
-                        ships.remove(ship)
+                break
+            
+            if bullet.kind=="bullet":
+                for ship in ships:
+                    if not ship == ships[0]:
+                        if bullet.shipCollide(ship):
+                            ships.remove(ship)
+                            bullets.remove(bullet)
+                            break
+                    else:
+                        if bullet.shipCollide(ship):
+                            bullets.remove(bullet)
+                            mode="game over"
+            for b in bullets:
+                if bullet.kind=="bullet" and b.kind=="wall":
+                    if bullet.bulletCollide(b):
                         bullets.remove(bullet)
-                else:
-                    if bullet.shipCollide(ship):
-                        bullets.remove(bullet)
-                        mode="game over"
+                        break
             
             
         for hittingplayerShip in ships:
