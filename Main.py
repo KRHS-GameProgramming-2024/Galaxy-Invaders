@@ -9,9 +9,20 @@ clock = pygame.time.Clock();
 size= [1500, 800]
 screen = pygame.display.set_mode(size)
 
+mode="start"
 
 
-mode="play"
+while mode=="start":
+        for event in pygame.event.get():
+            if event.type==pygame.QUIT:
+                sys.exit();
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_1:
+                     mode="play"
+    
+    
+    
+   
 
 while True:
     bg=pygame.image.load('Screens/space.png')
