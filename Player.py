@@ -35,12 +35,12 @@ class PlayerShip(Ship):
         width = size[0]
         height = size[1]
         if self.rect.left < 0:
-            self.speedx = -self.speedx
+            self.speedx = 0
         if self.rect.top < 0:
-            self.speedy = -self.speedy
+            self.speedy = 0
         if self.rect.right > width:
-            self.speedx = -self.speedx
+            self.speedx = 0
         if self.rect.bottom > height:
-            self.speedy = -self.speedy
+            self.speedy = 0
             
   

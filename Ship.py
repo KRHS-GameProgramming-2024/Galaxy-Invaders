@@ -39,9 +39,9 @@ class Ship():
         
     def shoot(self, owner, direction, target=None):
         if direction =="up":
-            speedy=-20
+            speedy=-30
         elif direction == "down":
-            speedy=20
+            speedy=15
         if target != None:
             xdif = target[0] - self.rect.centerx
             speedx = int(xdif/50)
