@@ -20,6 +20,7 @@ while True:
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
                      mode="play"
+            
     
         screen.blit(bg,[0,0])
         pygame.display.flip()
@@ -50,22 +51,25 @@ while True:
                     player.goKey("up")
                 elif event.key == pygame.K_s:
                     player.goKey("down")
-                elif event.key == pygame.K_f:
-                    bullets += [player.shoot("player", "up")]
-                elif event.key == pygame.K_q:
-                    bullets += [player.shootWall("player", "up")]
+               
                 elif event.key == pygame.K_RETURN:
                     mode="game over"
                 
-                
-
-            elif event.type == pygame.KEYDOWN:
+            elif event.type == pygame.KEYUP:
                 if event.key == pygame.K_a or event.key == pygame.K_LEFT:
                     player.goKey("sleft")
                 elif event.key == pygame.K_d or event.key == pygame.K_RIGHT:
                     player.goKey("sright")
-                elif event.key == pygame.K_f:
+                elif event.key == pygame.K_w:
                     player.goKey("sup")
+                elif event.key == pygame.K_s:
+                    player.goKey("sdown")
+                    
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    bullets += [player.shoot("player", "up")]
+                elif event.button == 3:
+                    bullets += [player.shootWall("player", "up")]
 
                 
         counter += 1
@@ -109,11 +113,13 @@ while True:
                         if bullet.shipCollide(ship):
                             bullets.remove(bullet)
                             mode="game over"
+                            break
             for b in bullets:
                 if bullet.kind=="bullet" and b.kind=="wall":
                     if bullet.bulletCollide(b):
-                        bullets.remove(bullet)
-                        break
+                        if bullet in bullets:
+                            bullets.remove(bullet)
+                            break
             
             
         for hittingplayerShip in ships:
@@ -143,6 +149,8 @@ while True:
                 sys.exit();
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
+                    mode="play"
+                elif event.key == pygame.K_SPACE:
                     mode="start"
         screen.fill((97, 164, 229))
         screen.blit(bg,[0,0])

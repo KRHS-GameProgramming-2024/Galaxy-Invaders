@@ -12,9 +12,7 @@ class Ship():
         self.size = (self.rect.height/10 + self.rect.width/10)/2
     
         self.rect = self.rect.move(startPos)
-        
-        self.didBounceX = False
-        self.didBounceY = False
+    
         
         self.kind="enemy"
 
@@ -62,12 +60,7 @@ class Ship():
                     if self.rect.bottom>other.rect.top:
                         if self.rect.top<other.rect.bottom:
                             if self.getDist(other) < self.size + other.size:
-                                if not self.didBounceX:
-                                    self.speedx = -self.speedx
-                                    self.didBounceX = True
-                                if not self.didBounceY:
-                                    self.speedy = -self.speedy
-                                    self.didBounceY = True
+                                
                                 return True
         return False
                                 
