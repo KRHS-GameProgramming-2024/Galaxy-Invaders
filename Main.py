@@ -67,7 +67,7 @@ while True:
                     
             elif event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1:
-                    bullets += [player.shoot("player", "up")]
+                    bullets += [player.shoot("player", "up", event.pos)]
                 elif event.button == 3:
                     bullets += [player.shootWall("player", "up")]
 

@@ -37,13 +37,18 @@ class Ship():
     def die(self):
         pass
         
-    def shoot(self, owner, direction):
-        speed=[0,0]
+    def shoot(self, owner, direction, target=None):
         if direction =="up":
-            speed=[0, -20]
+            speedy=-20
         elif direction == "down":
-            speed=[0, 20]
-        return Bullet(owner, speed, self.rect.center)
+            speedy=20
+        if target != None:
+            xdif = target[0] - self.rect.centerx
+            speedx = int(xdif/50)
+        else:
+            speedx = 0
+        
+        return Bullet(owner, [speedx, speedy], self.rect.center)
         
     def shootWall(self, owner, direction):
         speed=[0,0]
