@@ -11,20 +11,23 @@ screen = pygame.display.set_mode(size)
 
 mode="start"
 
-
-while mode=="start":
+while True:
+    bg=pygame.image.load('Screens/start.png')
+    while mode=="start":
         for event in pygame.event.get():
             if event.type==pygame.QUIT:
                 sys.exit();
             elif event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_1:
+                if event.key == pygame.K_SPACE:
                      mode="play"
     
-    
+        screen.blit(bg,[0,0])
+        pygame.display.flip()
+        clock.tick(60)
+
     
    
 
-while True:
     bg=pygame.image.load('Screens/space.png')
 
     counter = 0;
@@ -51,6 +54,8 @@ while True:
                     bullets += [player.shoot("player", "up")]
                 elif event.key == pygame.K_q:
                     bullets += [player.shootWall("player", "up")]
+                elif event.key == pygame.K_RETURN:
+                    mode="game over"
                 
                 
 
@@ -138,7 +143,7 @@ while True:
                 sys.exit();
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
-                    mode="play"
+                    mode="start"
         screen.fill((97, 164, 229))
         screen.blit(bg,[0,0])
         pygame.display.flip()
