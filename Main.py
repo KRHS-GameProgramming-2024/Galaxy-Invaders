@@ -13,6 +13,7 @@ mode="start"
 
 while True:
     bg=pygame.image.load('Screens/start.png')
+    pygame.event.set_grab(False)
     while mode=="start":
         for event in pygame.event.get():
             if event.type==pygame.QUIT:
@@ -37,7 +38,7 @@ while True:
     bullets =[]
 
     shootOdds = 225
-
+    pygame.event.set_grab(True)
     while mode=="play":
         for event in pygame.event.get():
             if event.type==pygame.QUIT:
@@ -142,7 +143,7 @@ while True:
         #print(clock.get_fps()) 
 
     bg=pygame.image.load('Screens/GameOver.png')
-    
+    pygame.event.set_grab(False)
     while mode=="game over":
         for event in pygame.event.get():
             if event.type==pygame.QUIT:
