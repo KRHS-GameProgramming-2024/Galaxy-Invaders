@@ -13,6 +13,7 @@ class Bullet():
         self.rad = (self.rect.height/50 + self.rect.width/50)/50
         
         self.owner=owner
+        self.kind="bullet"
 
     
     def move(self):
@@ -43,6 +44,16 @@ class Bullet():
                     if ship.rect.top <= self.rect.bottom:
                         if ship.rect.bottom >= self.rect.top:
                             print('collison')
+                            return True
+        return False
+        
+    def bulletCollide(self,ship):
+        if self.owner !=ship.owner:
+            if ship.rect.left <= self.rect.right:
+                if ship.rect.right >= self.rect.left:
+                    if ship.rect.top <= self.rect.bottom:
+                        if ship.rect.bottom >= self.rect.top:
+                            print('collison wall hit')
                             return True
         return False
         

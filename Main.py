@@ -2,6 +2,7 @@ import pygame, sys, math, random
 from Enemy import *
 from Player import *
 from Ship import *
+from Wall import *
 
 
 pygame.init()
@@ -9,11 +10,27 @@ clock = pygame.time.Clock();
 size= [1500, 800]
 screen = pygame.display.set_mode(size)
 
-
-
-mode="play"
+mode="start"
 
 while True:
+    bg=pygame.image.load('Screens/start.png')
+    pygame.event.set_grab(False)
+    while mode=="start":
+        for event in pygame.event.get():
+            if event.type==pygame.QUIT:
+                sys.exit();
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE:
+                     mode="play"
+            
+    
+        screen.blit(bg,[0,0])
+        pygame.display.flip()
+        clock.tick(60)
+
+    
+   
+
     bg=pygame.image.load('Screens/space.png')
 
     counter = 0;
@@ -22,7 +39,7 @@ while True:
     bullets =[]
 
     shootOdds = 225
-
+    pygame.event.set_grab(True)
     while mode=="play":
         for event in pygame.event.get():
             if event.type==pygame.QUIT:
@@ -36,18 +53,25 @@ while True:
                     player.goKey("up")
                 elif event.key == pygame.K_s:
                     player.goKey("down")
-                elif event.key == pygame.K_f:
-                    bullets += [player.shoot("player", "up")]
+               
+                elif event.key == pygame.K_RETURN:
+                    mode="game over"
                 
-                
-
-            elif event.type == pygame.KEYDOWN:
+            elif event.type == pygame.KEYUP:
                 if event.key == pygame.K_a or event.key == pygame.K_LEFT:
                     player.goKey("sleft")
                 elif event.key == pygame.K_d or event.key == pygame.K_RIGHT:
                     player.goKey("sright")
-                elif event.key == pygame.K_f:
+                elif event.key == pygame.K_w:
                     player.goKey("sup")
+                elif event.key == pygame.K_s:
+                    player.goKey("sdown")
+                    
+            elif event.type == pygame.MOUSEBUTTONDOWN:
+                if event.button == 1:
+                    bullets += [player.shoot("player", "up", event.pos)]
+                elif event.button == 3:
+                    bullets += [player.shootWall("player", "up")]
 
                 
         counter += 1
@@ -78,16 +102,26 @@ while True:
             bullet.move()
             if bullet.wallCollide(size):
                 bullets.remove(bullet)
-                
-            for ship in ships:
-                if not ship == ships[0]:
-                    if bullet.shipCollide(ship):
-                        ships.remove(ship)
-                        bullets.remove(bullet)
-                else:
-                    if bullet.shipCollide(ship):
-                        bullets.remove(bullet)
-                        mode="game over"
+                break
+            
+            if bullet.kind=="bullet":
+                for ship in ships:
+                    if not ship == ships[0]:
+                        if bullet.shipCollide(ship):
+                            ships.remove(ship)
+                            bullets.remove(bullet)
+                            break
+                    else:
+                        if bullet.shipCollide(ship):
+                            bullets.remove(bullet)
+                            mode="game over"
+                            break
+            for b in bullets:
+                if bullet.kind=="bullet" and b.kind=="wall":
+                    if bullet.bulletCollide(b):
+                        if bullet in bullets:
+                            bullets.remove(bullet)
+                            break
             
             
         for hittingplayerShip in ships:
@@ -110,7 +144,7 @@ while True:
         #print(clock.get_fps()) 
 
     bg=pygame.image.load('Screens/GameOver.png')
-    
+    pygame.event.set_grab(False)
     while mode=="game over":
         for event in pygame.event.get():
             if event.type==pygame.QUIT:
@@ -118,6 +152,8 @@ while True:
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_RETURN:
                     mode="play"
+                elif event.key == pygame.K_SPACE:
+                    mode="start"
         screen.fill((97, 164, 229))
         screen.blit(bg,[0,0])
         pygame.display.flip()
