@@ -4,6 +4,7 @@ from Player import *
 from Ship import *
 from Wall import *
 
+
 pygame.init()
 clock = pygame.time.Clock();
 size= [1500, 800]
