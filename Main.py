@@ -85,7 +85,7 @@ while True:
             image = shipImiges[random.randint(0,2)]
             ships += [Ship(image,
                      [5,0],
-                     [400,25])]
+                     [40,25])]
                      
               
             for ship in ships: 
@@ -162,3 +162,4 @@ while True:
         screen.blit(bg,[0,0])
         pygame.display.flip()
         clock.tick(60)
+
