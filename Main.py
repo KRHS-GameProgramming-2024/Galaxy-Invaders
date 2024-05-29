@@ -3,6 +3,7 @@ from Enemy import *
 from Player import *
 from Ship import *
 from Wall import *
+from Hud import *
 
 
 pygame.init()
@@ -37,6 +38,7 @@ while True:
     player = PlayerShip(4, [1450/2, 1250/2])
     ships = [player]
     bullets =[]
+    kills=HUD("kills: ", 0)
 
     shootOdds = 225
     pygame.event.set_grab(True)
@@ -110,6 +112,7 @@ while True:
                         if bullet.shipCollide(ship):
                             ships.remove(ship)
                             bullets.remove(bullet)
+                            kills.increase()
                             break
                     else:
                         if bullet.shipCollide(ship):
@@ -139,6 +142,7 @@ while True:
             screen.blit(ship.image,ship.rect)
         for bullet in bullets:
             screen.blit(bullet.image,bullet.rect)
+        screen.blit(kills.image,kills.rect)
         pygame.display.flip()
         clock.tick(60)
         #print(clock.get_fps()) 
