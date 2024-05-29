@@ -53,7 +53,7 @@ class Ship():
     def shootWall(self, owner, direction):
         speed=[0,0]
         if direction =="up":
-            speed=[0, -1]
+            speed=[0, -10]
         elif direction == "down":
             speed=[0, 1]
         return Wall(owner, speed, self.rect.center)
