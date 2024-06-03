@@ -4,6 +4,8 @@ from Player import *
 from Ship import *
 from Wall import *
 
+pygame.mixer.init()
+
 
 pygame.init()
 clock = pygame.time.Clock();
@@ -11,6 +13,8 @@ size= [1500, 800]
 screen = pygame.display.set_mode(size)
 
 mode="start"
+pygame.mixer.music.load("Sounds/Space.mp3", "mp3")
+pygame.mixer.music.play(loops = -1)
 
 while True:
     bg=pygame.image.load('Screens/start.png')
