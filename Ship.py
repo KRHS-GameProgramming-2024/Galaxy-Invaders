@@ -12,9 +12,7 @@ class Ship():
         self.size = (self.rect.height/10 + self.rect.width/10)/2
     
         self.rect = self.rect.move(startPos)
-        
-        self.didBounceX = False
-        self.didBounceY = False
+    
         
         self.kind="enemy"
 
@@ -39,13 +37,26 @@ class Ship():
     def die(self):
         pass
         
-    def shoot(self, owner, direction):
+    def shoot(self, owner, direction, target=None):
+        if direction =="up":
+            speedy=-30
+        elif direction == "down":
+            speedy=15
+        if target != None:
+            xdif = target[0] - self.rect.centerx
+            speedx = int(xdif/50)
+        else:
+            speedx = 0
+        
+        return Bullet(owner, [speedx, speedy], self.rect.center)
+        
+    def shootWall(self, owner, direction):
         speed=[0,0]
         if direction =="up":
-            speed=[0, -20]
+            speed=[0, -10]
         elif direction == "down":
-            speed=[0, 20]
-        return Bullet(owner, speed, self.rect.center)
+            speed=[0, 1]
+        return Wall(owner, speed, self.rect.center)
 
     def shipCollide(self, other):
         if self != other:
