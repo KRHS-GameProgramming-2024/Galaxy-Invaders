@@ -4,7 +4,7 @@ from Bullet import *
 class Wall(Bullet):
      def __init__(self,owner, speed, startPos=[0,0]):
         Bullet.__init__(self,owner, speed, startPos)
-        self.image = pygame.image.load( "Bullet/wall.png")
+        self.image = pygame.image.load( "Bullet/wall.gif")
         self.rect = self.image.get_rect(center=startPos)
         self.size = (self.rect.height/10 + self.rect.width/10)/2
     
