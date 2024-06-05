@@ -5,6 +5,8 @@ from Ship import *
 from Wall import *
 from Hud import *
 
+pygame.mixer.init()
+
 
 pygame.init()
 clock = pygame.time.Clock();
@@ -12,6 +14,8 @@ size= [1500, 800]
 screen = pygame.display.set_mode(size)
 
 mode="start"
+pygame.mixer.music.load("Sounds/Space.mp3", "mp3")
+pygame.mixer.music.play(loops = -1)
 
 while True:
     bg=pygame.image.load('Screens/start.png')
@@ -90,7 +94,7 @@ while True:
             image = shipImiges[random.randint(0,2)]
             ships += [Ship(image,
                      [5,0],
-                     [400,25])]
+                     [40,25])]
                      
               
             for ship in ships: 
@@ -173,4 +177,9 @@ while True:
         screen.fill((97, 164, 229))
         screen.blit(bg,[0,0])
         pygame.display.flip()
+<<<<<<< HEAD
         clock.tick(fps)
+=======
+        clock.tick(60)
+
+>>>>>>> origin/master
