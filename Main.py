@@ -177,9 +177,9 @@ while True:
         screen.fill((97, 164, 229))
         screen.blit(bg,[0,0])
         pygame.display.flip()
-<<<<<<< HEAD
+ 
         clock.tick(fps)
-=======
+
         clock.tick(60)
 
->>>>>>> origin/master
+        dorigin/master
