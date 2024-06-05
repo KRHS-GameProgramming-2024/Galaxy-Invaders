@@ -11,4 +11,7 @@ class HUD():
     def increase(self):
         self.value+=1
         self.image = self.font.render(self.basetext+" "+str(self.value), True, (255, 255, 255))
-        self.rect = self.image.get_rect()
+        self.rect = self.image.get_rect(topleft  = self.rect.topleft)
+
+
+   

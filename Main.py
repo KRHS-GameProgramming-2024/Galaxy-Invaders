@@ -39,6 +39,11 @@ while True:
     ships = [player]
     bullets =[]
     kills=HUD("kills: ", 0)
+    
+    timer=HUD("time: ", 0, [0,75])
+    timeCounter=0
+    
+    fps=60
 
     shootOdds = 225
     pygame.event.set_grab(True)
@@ -92,6 +97,11 @@ while True:
                 if ships[-1].shipCollide(ship):
                     ships.remove(ships[-1])
                     break
+                    
+        timeCounter+=1
+        if timeCounter==fps:
+            timeCounter=0
+            timer.increase()
         
         for ship in ships:
             ship.move()
@@ -113,6 +123,7 @@ while True:
                             ships.remove(ship)
                             bullets.remove(bullet)
                             kills.increase()
+                                                                    
                             break
                     else:
                         if bullet.shipCollide(ship):
@@ -143,6 +154,7 @@ while True:
         for bullet in bullets:
             screen.blit(bullet.image,bullet.rect)
         screen.blit(kills.image,kills.rect)
+        screen.blit(timer.image,timer.rect)
         pygame.display.flip()
         clock.tick(60)
         #print(clock.get_fps()) 
@@ -161,4 +173,4 @@ while True:
         screen.fill((97, 164, 229))
         screen.blit(bg,[0,0])
         pygame.display.flip()
-        clock.tick(60)
+        clock.tick(fps)
