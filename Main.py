@@ -4,6 +4,7 @@ from Player import *
 from Ship import *
 from Wall import *
 from Hud import *
+from bolt import *
 
 pygame.mixer.init()
 
@@ -64,6 +65,9 @@ while True:
                     player.goKey("up")
                 elif event.key == pygame.K_s:
                     player.goKey("down")
+                    
+                elif event.key == pygame.K_f:
+                    bullets += [player.shootbolt("player", "up")]
                
                 elif event.key == pygame.K_RETURN:
                     mode="game over"
@@ -127,19 +131,35 @@ while True:
                             ships.remove(ship)
                             bullets.remove(bullet)
                             kills.increase()
-                                                                    
+                            break
+
+                    else:
+                        if bullet.shipCollide(ship):
+                            bullets.remove(bullet)
+                            mode="game over"
+                            break       
+                            
+            if bullet.kind=="bolt":
+                for ship in ships:
+                    if not ship == ships[0]:
+                        if bullet.shipCollide(ship):
+                            ships.remove(ship)
+                            kills.increase()                                    
                             break
                     else:
                         if bullet.shipCollide(ship):
                             bullets.remove(bullet)
                             mode="game over"
                             break
+                            
+            
             for b in bullets:
                 if bullet.kind=="bullet" and b.kind=="wall":
                     if bullet.bulletCollide(b):
                         if bullet in bullets:
                             bullets.remove(bullet)
                             break
+            
             
             
         for hittingplayerShip in ships:

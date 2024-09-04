@@ -1,6 +1,7 @@
 import pygame, sys, math
 from Bullet import *
 from Wall import *
+from bolt import *
 
 class Ship():
     def __init__(self, image, speed = [0,0], startPos=[0,0]):
@@ -39,9 +40,9 @@ class Ship():
         
     def shoot(self, owner, direction, target=None):
         if direction =="up":
-            speedy=-30
+            speedy=-35
         elif direction == "down":
-            speedy=15
+            speedy=10
         if target != None:
             xdif = target[0] - self.rect.centerx
             speedx = int(xdif/50)
@@ -53,10 +54,18 @@ class Ship():
     def shootWall(self, owner, direction):
         speed=[0,0]
         if direction =="up":
-            speed=[0, -10]
+            speed=[0, -8]
         elif direction == "down":
             speed=[0, 1]
         return Wall(owner, speed, self.rect.center)
+        
+    def shootbolt(self, owner, direction):
+        speed=[0,0]
+        if direction =="up":
+            speed=[0, -6]
+        elif direction == "down":
+            speed=[0, 1]
+        return bolt(owner, speed, self.rect.center)
 
     def shipCollide(self, other):
         if self != other:
