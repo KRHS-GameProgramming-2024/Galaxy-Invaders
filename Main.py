@@ -119,7 +119,10 @@ while True:
                     bullets += [ship.shoot("enemy", "down")]
         
         for bullet in bullets:
-            bullet.move()
+            if bullet.kind=="wall":
+                bullet.move(player.rect.center)
+            else:
+                bullet.move()
             if bullet.wallCollide(size):
                 bullets.remove(bullet)
                 break
